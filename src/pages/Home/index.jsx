@@ -9,14 +9,14 @@ export function Home() {
   const createNewUser = () => {
     const newUser = {
       id: usersArray.length + 1,
-      name: userName, 
+      name: userName,
       time: getCurrentHour()
     }
     console.log(newUser);
     addNewUser(newUser)
   }
   const addNewUser = (newUser) => {
-    setUsersArray( prevState => [...prevState, newUser])
+    setUsersArray(prevState => [...prevState, newUser])
   }
 
   const handleUserName = (name) => {
@@ -24,30 +24,38 @@ export function Home() {
   }
 
   const getCurrentHour = () => {
-    return new Date().toLocaleString().substring(0,16)
+    return new Date().toLocaleString().substring(0, 16)
   }
 
   return (
     <main className={styles.container}>
-      <h1>Lista de Presença</h1>
+
+      <header>
+        <h1>Lista de Presença</h1>
+        <div className={styles.pfp}>
+          <strong>Davi</strong>
+          <img src="https://github.com/davivsouza.png" alt="Foto de Perfil" />
+        </div>
+      </header>
+
       <input
         type="text"
         placeholder='Digite o nome...'
-        onChange={ e => handleUserName(e.target.value) }
+        onChange={e => handleUserName(e.target.value)}
       />
-      <button 
-        type="submit" 
-        onClick={ () => createNewUser() }
+      <button
+        type="submit"
+        onClick={() => createNewUser()}
       >
         Adicionar
       </button>
 
-      {usersArray.map(user =>(
-        <Card 
-          key={user.id} 
-          name={user.name} 
-          arrivedTime={user.time} 
-        /> 
+      {usersArray.map(user => (
+        <Card
+          key={user.id}
+          name={user.name}
+          arrivedTime={user.time}
+        />
       ))}
     </main>
 
