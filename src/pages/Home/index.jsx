@@ -3,19 +3,18 @@ import { Card } from "../../components/Card"
 import { useState } from 'react'
 
 export function Home() {
-  const [usersArray, setUsersArray] = useState(users)
+  const [usersArray, setUsersArray] = useState([])
   const [userName, setUserName] = useState("")
 
   const createNewUser = () => {
-    addNewUser(
-      {
-        name: userName, 
-        time: getCurrentHour()
-      }
-    )
+    const newUser = {
+      name: userName, 
+      time: getCurrentHour()
+    }
+    addNewUser(newUser)
   }
-  const addNewUser = (user) => {
-    setUsersArray([...usersArray, user])
+  const addNewUser = (newUser) => {
+    setUsersArray( prevState => [...prevState, newUser])
   }
 
   const handleUserName = (name) => {
@@ -23,7 +22,7 @@ export function Home() {
   }
 
   const getCurrentHour = () => {
-    return new Date().toLocaleTimeString().substring(0,5)
+    return new Date().toLocaleString().substring(0,16)
   }
 
   return (
