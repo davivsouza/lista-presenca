@@ -1,5 +1,4 @@
 import styles from './styles.module.css'
-import users from "../../server.json"
 import { Card } from "../../components/Card"
 import { useState } from 'react'
 
@@ -8,7 +7,12 @@ export function Home() {
   const [userName, setUserName] = useState("")
 
   const createNewUser = () => {
-    addNewUser({ name: userName, time: getCurrentHour() })
+    addNewUser(
+      {
+        name: userName, 
+        time: getCurrentHour()
+      }
+    )
   }
   const addNewUser = (user) => {
     setUsersArray([...usersArray, user])
@@ -19,12 +23,12 @@ export function Home() {
   }
 
   const getCurrentHour = () => {
-    return new Date().toLocaleString().substring(11, 16)
+    return new Date().toLocaleTimeString().substring(0,5)
   }
 
   return (
     <main className={styles.container}>
-      <h1>Nome: {userName}</h1>
+      <h1>Lista de Presença</h1>
       <input
         type="text"
         placeholder='Digite o nome...'
@@ -37,8 +41,12 @@ export function Home() {
         Adicionar
       </button>
 
-      {usersArray.map((user, idx) => (
-        <Card key={idx} name={user.name} arrivedTime={user.time} />
+      {usersArray.map((user, idx) =>(
+        <Card 
+          key={idx} 
+          name={user.name} 
+          arrivedTime={user.time} 
+        /> 
       ))}
     </main>
 
