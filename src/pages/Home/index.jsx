@@ -8,9 +8,11 @@ export function Home() {
 
   const createNewUser = () => {
     const newUser = {
+      id: usersArray.length + 1,
       name: userName, 
       time: getCurrentHour()
     }
+    console.log(newUser);
     addNewUser(newUser)
   }
   const addNewUser = (newUser) => {
@@ -40,9 +42,9 @@ export function Home() {
         Adicionar
       </button>
 
-      {usersArray.map((user, idx) =>(
+      {usersArray.map(user =>(
         <Card 
-          key={idx} 
+          key={user.id} 
           name={user.name} 
           arrivedTime={user.time} 
         /> 
