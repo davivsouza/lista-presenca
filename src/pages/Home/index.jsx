@@ -23,6 +23,7 @@ export function Home() {
     }
     addNewUser(newUser)
   }
+  
   const addNewUser = (newUser) => {
     setUsersArray(prevState => [...prevState, newUser])
   }
@@ -32,22 +33,26 @@ export function Home() {
   }
 
   const getCurrentHour = () => {
-    return new Date().toLocaleString().substring(0,16)
+    return new Date().toLocaleString().substring(0, 16)
   }
 
 
-  useEffect(async () => {
-    if (loginKey) {
-      const response = await fetch(url)
-      const data = await response.json()
-      const getUserGithub = {
-        name: data.name,
-        avatar: data.avatar_url
+  useEffect(() => {
+    async function fetchData() {
+      if (loginKey) {
+        const response = await fetch(url)
+        const data = await response.json()
+        const getUserGithub = {
+          name: data.name,
+          avatar: data.avatar_url
+        }
+        setUserGitHub(getUserGithub)
+      } else {
+        setUserGitHub(initialUser)
       }
-      setUserGitHub(getUserGithub)
-    } else {
-      setUserGitHub(initialUser)
     }
+    fetchData()
+
   }, [loginKey])
 
   return (
