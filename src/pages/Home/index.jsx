@@ -1,13 +1,17 @@
-import styles from './styles.module.css'
-import { Card } from "../../components/Card"
 import { useState, useEffect } from 'react'
+import { Card } from "../../components/Card"
+import styles from './styles.module.css'
 import emptyUserIcon from "../../assets/empty-user.png"
+
+
 export function Home() {
   const [usersArray, setUsersArray] = useState([])
   const [userName, setUserName] = useState("")
   const [loginKey, setLoginKey] = useState(false)
+
   const initialUser = { name: "user138109890", avatar: emptyUserIcon }
-  const url = "https://api.github.com/users/victorrocha-dev"
+  const url = "https://api.github.com/users/davivsouza"
+
   const [userGitHub, setUserGitHub] = useState(initialUser)
 
 
@@ -28,7 +32,7 @@ export function Home() {
   }
 
   const getCurrentHour = () => {
-    return new Date().toLocaleTimeString().substring(0, 5)
+    return new Date().toLocaleString().substring(0,16)
   }
 
 
