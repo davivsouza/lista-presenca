@@ -1,6 +1,6 @@
 import styles from './styles.module.css'
 import { Card } from "../../components/Card"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function Home() {
   const [usersArray, setUsersArray] = useState([])
@@ -24,8 +24,15 @@ export function Home() {
   }
 
   const getCurrentHour = () => {
-    return new Date().toLocaleString().substring(0, 16)
+    return new Date().toLocaleTimeString().substring(0,5)
   }
+
+
+  useEffect(()=>{
+
+    //corpo do useEffect
+    //executado assim que nossa interface é renderizado
+  }, [])
 
   return (
     <main className={styles.container}>
