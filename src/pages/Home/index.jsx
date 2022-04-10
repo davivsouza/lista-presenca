@@ -1,10 +1,15 @@
 import styles from './styles.module.css'
 import { Card } from "../../components/Card"
 import { useState, useEffect } from 'react'
-
+import emptyUserIcon from "../../assets/empty-user.png"
 export function Home() {
   const [usersArray, setUsersArray] = useState([])
   const [userName, setUserName] = useState("")
+  const [loginKey, setLoginKey] = useState(false)
+  const initialUser = { name: "user138109890", avatar: emptyUserIcon }
+  const url = "https://api.github.com/users/victorrocha-dev"
+  const [userGitHub, setUserGitHub] = useState(initialUser)
+
 
   const createNewUser = () => {
     const newUser = {
@@ -12,7 +17,6 @@ export function Home() {
       name: userName,
       time: getCurrentHour()
     }
-    console.log(newUser);
     addNewUser(newUser)
   }
   const addNewUser = (newUser) => {
@@ -24,15 +28,23 @@ export function Home() {
   }
 
   const getCurrentHour = () => {
-    return new Date().toLocaleTimeString().substring(0,5)
+    return new Date().toLocaleTimeString().substring(0, 5)
   }
 
 
-  useEffect(()=>{
-
-    //corpo do useEffect
-    //executado assim que nossa interface é renderizado
-  }, [])
+  useEffect(async () => {
+    if (loginKey) {
+      const response = await fetch(url)
+      const data = await response.json()
+      const getUserGithub = {
+        name: data.name,
+        avatar: data.avatar_url
+      }
+      setUserGitHub(getUserGithub)
+    } else {
+      setUserGitHub(initialUser)
+    }
+  }, [loginKey])
 
   return (
     <main className={styles.container}>
@@ -40,10 +52,17 @@ export function Home() {
       <header>
         <h1>Lista de Presença</h1>
         <div className={styles.pfp}>
-          <strong>Davi</strong>
-          <img src="https://github.com/davivsouza.png" alt="Foto de Perfil" />
+          <strong>{userGitHub.name}</strong>
+          <img src={userGitHub.avatar} alt={userGitHub.name} />
         </div>
+
       </header>
+      <button
+        className={styles.loginBtn}
+        onClick={() => !loginKey ? setLoginKey(true) : setLoginKey(false)}
+      >
+        {!loginKey ? "Login with GitHub" : "Logout"}
+      </button>
 
       <input
         type="text"
@@ -52,6 +71,7 @@ export function Home() {
       />
       <button
         type="submit"
+        className={styles.submitBtn}
         onClick={() => createNewUser()}
       >
         Adicionar

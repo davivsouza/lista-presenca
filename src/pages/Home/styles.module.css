@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  position: relative;
 }
 
 .container header{
@@ -24,6 +25,25 @@
   align-items: center;
 }
 
+.container  .loginBtn{
+  
+  position: absolute;
+  right: 25%;
+  top: 50px;
+
+
+  width: auto;
+  background: none;
+  color: #ea4c89;
+  border: none;
+
+  font-weight: 700;
+  font-size: 16px;
+ 
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
 .container input{
   width: 50%;
   padding: 24px;
@@ -36,7 +56,9 @@
   
 }
 
-.container button{
+
+
+.container .submitBtn{
   width: 50%;
   padding: 24px;
   font-weight: 700;
@@ -53,6 +75,7 @@
   transition: filter 0.2s;
 }
 
-.container button:hover{
+.container button:hover,
+.container header .loginBtn:hover{
   filter: brightness(0.9);
 }
