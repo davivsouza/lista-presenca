@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Card, CardProps } from "../../components/Card"
+import { Card, ICardProps } from "../../components/Card"
 import styles from './styles.module.css'
 
 interface IUserGit {
   name: string,
-  avatar: string
+  avatar_url: string
 }
 
 export function Home() {
   const url = "https://api.github.com/users/davivsouza"
-  const [usersArray, setUsersArray] = useState<CardProps[]>([])
+  const [usersArray, setUsersArray] = useState<ICardProps[]>([])
   const [userName, setUserName] = useState("")
   const [IuserGitHub, setIUserGitHub] = useState<IUserGit>({} as IUserGit)
 
@@ -24,7 +24,7 @@ export function Home() {
     addNewUser(newUser)
   }
   
-  const addNewUser = (newUser: CardProps) => {
+  const addNewUser = (newUser: ICardProps) => {
     setUsersArray(prevState => [...prevState, newUser])
   }
 
@@ -46,7 +46,7 @@ export function Home() {
         
         const getIUserGithub = {
           name: data.name,
-          avatar: data.avatar
+          avatar_url: data.avatar_url
         }
 
         setIUserGitHub(getIUserGithub)
@@ -63,7 +63,7 @@ export function Home() {
         <h1>Lista de Presença</h1>
         <div className={styles.pfp}>
           <strong>{IuserGitHub.name}</strong>
-          <img src={IuserGitHub.avatar} alt={IuserGitHub.name} />
+          <img src={IuserGitHub.avatar_url} alt={IuserGitHub.name} />
         </div>
 
       </header>
