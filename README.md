@@ -7,7 +7,6 @@
   <img  src="https://img.shields.io/github/stars/davivsouza/lista-presenca"/>
 </div>
 
-<<<<<<< HEAD
 <p align="center">
  <a href="#objetivo">Objetivo</a> •
  <a href="#tecnologias">Tecnologias</a> • 
