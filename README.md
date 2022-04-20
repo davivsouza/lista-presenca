@@ -7,6 +7,7 @@
   <img  src="https://img.shields.io/github/stars/davivsouza/lista-presenca"/>
 </div>
 
+<<<<<<< HEAD
 <p align="center">
  <a href="#objetivo">Objetivo</a> •
  <a href="#tecnologias">Tecnologias</a> • 
@@ -79,3 +80,4 @@ Feito com ❤️ por Davi V. Souza 👋🏽 Entre em contato!
 
 <h1 id="license">License</h1>
 MIT
+
